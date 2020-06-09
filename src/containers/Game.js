@@ -5,8 +5,8 @@ import Game from "../components/Game";
 
 const mapStateToProps = state => {
     return {
-        certificatesAll: gameOptions.CERTIFICATES,
-        skillsAll: gameOptions.SKILLS,
+        CERTIFICATES: gameOptions.CERTIFICATES,
+        SKILLS: gameOptions.SKILLS,
 
         gameMap: state.game.map,
         currentCertificates: state.game.certificates,

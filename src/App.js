@@ -6,6 +6,10 @@ import Settings from "./containers/Settings";
 
 function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
     const windowHeight = document.documentElement.clientHeight;
+    console.log('windowHeight', windowHeight);
+    const EMPTY = 'empty';
+    const WALL = 'wall';
+    const BOSS_WALL = 'boss-wall';
 
     function generateItems(map, items, itemClass) {
         let itemsInterval = Math.floor(mapHeight / items);
@@ -21,13 +25,13 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
             let itemY = getRandomNumber(itemVar, itemVar + itemsInterval - 1);
             let itemX = getRandomNumber(0, mapWidth - 1);
             console.log(`itemVar`, itemVar);
-            if ( (map[itemY][itemX] === 'empty') &&
+            if ( (map[itemY][itemX] === EMPTY) &&
                 !(
                     !(itemX === 0) && !(itemX === mapWidth - 1) && !(itemY === 0) && !(itemY === mapHeight - 1) &&
-                    map[itemY][itemX - 1] === 'wall' && map[itemY][itemX - 1] === 'boss-wall' &&
-                    map[itemY + 1][itemX] === 'wall' && map[itemY + 1][itemX] === 'boss-wall' &&
-                    map[itemY][itemX + 1] === 'wall' && map[itemY][itemX + 1] === 'boss-wall' &&
-                    map[itemY - 1][itemX] === 'wall' && map[itemY - 1][itemX] === 'boss-wall'
+                    (map[itemY][itemX - 1] === WALL || map[itemY][itemX - 1] === BOSS_WALL) &&
+                    (map[itemY + 1][itemX] === WALL || map[itemY + 1][itemX] === BOSS_WALL) &&
+                    (map[itemY][itemX + 1] === WALL || map[itemY][itemX + 1] === BOSS_WALL) &&
+                    (map[itemY - 1][itemX] === WALL || map[itemY - 1][itemX] === BOSS_WALL)
                 )
             ) {
                 map[itemY][itemX] = itemClass;
@@ -50,7 +54,7 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
     return (
         <div style={{height: windowHeight + 'px'}}>
             { (!isSettingsShow && !gameOn) && <StartMenu generateItems={generateItems} getRandomNumber={getRandomNumber}/> }
-            { gameOn && <Game generateItems={generateItems} getRandomNumber={getRandomNumber}/> }
+            { gameOn && <Game windowHeight={windowHeight} generateItems={generateItems}/> }
             { isSettingsShow && <Settings /> }
         </div>
     );

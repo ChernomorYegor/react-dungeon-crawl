@@ -1,6 +1,7 @@
 import {createAction} from 'redux-actions';
 
 export default {
+    'GAME/START_GAME': createAction('GAME/START_GAME'),
     'GAME/MOVE_LEFT': createAction('GAME/MOVE_LEFT'),
     'GAME/MOVE_UP': createAction('GAME/MOVE_UP'),
     'GAME/MOVE_RIGHT': createAction('GAME/MOVE_RIGHT'),

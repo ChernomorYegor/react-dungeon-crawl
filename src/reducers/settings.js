@@ -1,7 +1,5 @@
 import update from 'immutability-helper';
 import {handleActions} from 'redux-actions';
-
-import ActionsStartMenu from "../actions/startMenu";
 import ActionsSettings from './../actions/settings';
 
 const initialState = {
@@ -14,14 +12,13 @@ const initialState = {
 };
 
 const settingsReducer = handleActions({
-    [ActionsStartMenu['SETTINGS/SHOW_SETTINGS']]: (state, action) => {
+    [ActionsSettings['SETTINGS/SHOW_SETTINGS']]: (state, action) => {
         return update(state, {
             $merge: {
                 isSettingsShow: true,
             }
         });
     },
-
     [ActionsSettings['SETTINGS/HIDE_SETTINGS']]: (state, action) => {
         return update(state, {
             $merge: {

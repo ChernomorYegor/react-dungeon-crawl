@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function StartMenu({showSettings, startGame, certificates, bosses, difficulty, mapWidth, mapHeight, generateItems, getRandomNumber}) {
+function StartMenu({showSettings, startGame, CERTIFICATES, BOSSES, difficulty, mapWidth, mapHeight, generateItems, getRandomNumber}) {
+    const PLAYER = 'player';
+    const WALL = 'wall';
+    const EMPTY = 'empty';
+    const BOSS_WALL = 'boss-wall';
+    const BOSS = 'boss';
+    const CERTIFICATE = 'certificate';
+
     function _startGame() {
         let playerX = getRandomNumber(0, mapWidth - 1);
         let map = generateMap(playerX);
@@ -17,28 +24,28 @@ function StartMenu({showSettings, startGame, certificates, bosses, difficulty, m
             let generatedRowMap = [];
 
             if (i === 0) {
-                generatedRowMap[playerX] = 'player';
+                generatedRowMap[playerX] = PLAYER;
             }
 
             let wallVar = 0;
             while (wallVar < numberOfWalls) {
                 let randomSquare = getRandomNumber(0, mapWidth - 1);
-                if (generatedRowMap[randomSquare] !== 'wall' && generatedRowMap[randomSquare] !== 'player') {
-                    generatedRowMap[randomSquare] = 'wall';
+                if (generatedRowMap[randomSquare] !== WALL && generatedRowMap[randomSquare] !== PLAYER) {
+                    generatedRowMap[randomSquare] = WALL;
                     wallVar++;
                 }
             }
 
             for (let j = 0; j < mapWidth; j++) {
                 if (!generatedRowMap[j]) {
-                    generatedRowMap[j] = 'empty';
+                    generatedRowMap[j] = EMPTY;
                 }
             }
             generatedMap.push(generatedRowMap);
         }
 
-        generateBosses(generatedMap, bosses);
-        generateItems(generatedMap, certificates, 'certificate');
+        generateBosses(generatedMap, BOSSES);
+        generateItems(generatedMap, CERTIFICATES, CERTIFICATE);
 
         return generatedMap;
     }
@@ -52,15 +59,15 @@ function StartMenu({showSettings, startGame, certificates, bosses, difficulty, m
             let bossX = getRandomNumber(0, mapWidth - 5);
             console.log(bossVar);
             for (let bw = 1; bw < 4; bw++) {
-                map[bossY][bossX] = 'boss-wall';
-                map[bossY + bw][bossX] = 'boss-wall';
-                map[bossY][bossX + bw] = 'boss-wall';
-                map[bossY + bw][bossX + 3] = 'boss-wall';
-                map[bossY + 3][bossX + bw] = 'boss-wall';
+                map[bossY][bossX] = BOSS_WALL;
+                map[bossY + bw][bossX] = BOSS_WALL;
+                map[bossY][bossX + bw] = BOSS_WALL;
+                map[bossY + bw][bossX + 3] = BOSS_WALL;
+                map[bossY + 3][bossX + bw] = BOSS_WALL;
             }
             for (let b = 1; b < 3; b++) {
-                map[bossY + 1][bossX + b] = 'boss';
-                map[bossY + 2][bossX + b] = 'boss';
+                map[bossY + 1][bossX + b] = BOSS;
+                map[bossY + 2][bossX + b] = BOSS;
             }
             bossVar += bossesInterval;
         }
@@ -80,8 +87,8 @@ function StartMenu({showSettings, startGame, certificates, bosses, difficulty, m
 StartMenu.propTypes = {
     showSettings: PropTypes.func.isRequired,
     startGame: PropTypes.func.isRequired,
-    certificates: PropTypes.number.isRequired,
-    bosses: PropTypes.number.isRequired,
+    CERTIFICATES: PropTypes.number.isRequired,
+    BOSSES: PropTypes.number.isRequired,
     difficulty: PropTypes.number.isRequired,
     mapWidth: PropTypes.number.isRequired,
     mapHeight: PropTypes.number.isRequired,

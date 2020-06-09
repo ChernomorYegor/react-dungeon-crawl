@@ -1,7 +1,5 @@
 import update from 'immutability-helper';
 import {handleActions} from 'redux-actions';
-
-import ActionsStartMenu from "../actions/startMenu";
 import ActionsGame from './../actions/game';
 
 const initialState = {
@@ -18,7 +16,7 @@ const initialState = {
 };
 
 const gameReducer = handleActions({
-    [ActionsStartMenu['GAME/START_GAME']]: (state, action) => {
+    [ActionsGame['GAME/START_GAME']]: (state, action) => {
         console.log(action.payload);
         return update(state, {
             $merge: {
@@ -29,7 +27,6 @@ const gameReducer = handleActions({
             }
         });
     },
-
     [ActionsGame['GAME/MOVE_LEFT']]: (state, action) => {
         return update(state, {
             map: {

@@ -1,12 +1,13 @@
 import {connect} from 'react-redux';
-import ActionsStartMenu from "../actions/startMenu";
+import ActionsGame from "../actions/game";
+import ActionsSettings from "../actions/settings";
 import gameOptions from "../gameOptions/gameOptions";
 import StartMenu from "../components/StartMenu";
 
 const mapStateToProps = state => {
     return {
-        certificates: gameOptions.CERTIFICATES,
-        bosses: gameOptions.BOSSES,
+        CERTIFICATES: gameOptions.CERTIFICATES,
+        BOSSES: gameOptions.BOSSES,
         difficulty: state.settings.difficulty,
         mapWidth: state.settings.mapWidth,
         mapHeight: state.settings.mapHeight,
@@ -14,8 +15,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        startGame: ({map, playerX}) => dispatch(ActionsStartMenu["GAME/START_GAME"]({map, playerX})),
-        showSettings: () => dispatch(ActionsStartMenu["SETTINGS/SHOW_SETTINGS"]()),
+        startGame: ({map, playerX}) => dispatch(ActionsGame["GAME/START_GAME"]({map, playerX})),
+        showSettings: () => dispatch(ActionsSettings["SETTINGS/SHOW_SETTINGS"]()),
     };
 };
 
