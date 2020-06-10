@@ -18,7 +18,7 @@ function StartMenu({showSettings, startGame, CERTIFICATES, BOSSES, difficulty, m
 
     function generateMap(playerX) {
         let generatedMap = [];
-        let numberOfWalls = Math.ceil((mapWidth * difficulty) / 100);
+        let numberOfWalls = Math.ceil(mapWidth * difficulty / 100);
         console.log(numberOfWalls);
         for (let i = 0; i < mapHeight; i++) {
             let generatedRowMap = [];
@@ -30,7 +30,8 @@ function StartMenu({showSettings, startGame, CERTIFICATES, BOSSES, difficulty, m
             let wallVar = 0;
             while (wallVar < numberOfWalls) {
                 let randomSquare = getRandomNumber(0, mapWidth - 1);
-                if (generatedRowMap[randomSquare] !== WALL && generatedRowMap[randomSquare] !== PLAYER) {
+                if (generatedRowMap[randomSquare] !== WALL && generatedRowMap[randomSquare] !== PLAYER &&
+                    !(i === 1 && randomSquare === playerX)) {
                     generatedRowMap[randomSquare] = WALL;
                     wallVar++;
                 }
@@ -54,8 +55,8 @@ function StartMenu({showSettings, startGame, CERTIFICATES, BOSSES, difficulty, m
         let bossesInterval = Math.floor(mapHeight / bosses);
         let bossVar = 0;
         console.log(bossesInterval);
-        while (bossVar < mapHeight) {
-            let bossY = getRandomNumber(bossVar, bossVar + bossesInterval - 5);
+        while (bossVar < mapHeight - 1) {
+            let bossY = getRandomNumber(bossVar + 1, bossVar + bossesInterval - 5);
             let bossX = getRandomNumber(0, mapWidth - 5);
             console.log(bossVar);
             for (let bw = 1; bw < 4; bw++) {

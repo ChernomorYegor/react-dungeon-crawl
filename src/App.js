@@ -25,13 +25,43 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
             let itemY = getRandomNumber(itemVar, itemVar + itemsInterval - 1);
             let itemX = getRandomNumber(0, mapWidth - 1);
             console.log(`itemVar`, itemVar);
+
             if ( (map[itemY][itemX] === EMPTY) &&
                 !(
                     !(itemX === 0) && !(itemX === mapWidth - 1) && !(itemY === 0) && !(itemY === mapHeight - 1) &&
-                    (map[itemY][itemX - 1] === WALL || map[itemY][itemX - 1] === BOSS_WALL) &&
-                    (map[itemY + 1][itemX] === WALL || map[itemY + 1][itemX] === BOSS_WALL) &&
-                    (map[itemY][itemX + 1] === WALL || map[itemY][itemX + 1] === BOSS_WALL) &&
-                    (map[itemY - 1][itemX] === WALL || map[itemY - 1][itemX] === BOSS_WALL)
+                    isWall(itemY, itemX - 1) && isWall(itemY, itemX + 1) && isWall(itemY - 1, itemX) && isWall(itemY + 1, itemX)
+                ) &&
+                !(
+                    (itemY === 0) && (itemX === 0) &&
+                    isWall(itemY, itemX + 1) && isWall(itemY + 1, itemX) && isWall(itemY, mapWidth - 1)
+                ) &&
+                !(
+                    (itemY === 0) && (itemX === mapWidth - 1) &&
+                    isWall(itemY, itemX - 1) && isWall(itemY + 1, itemX) && isWall(itemY, 0)
+                ) &&
+                !(
+                    (itemY === mapHeight - 1) && (itemX === mapWidth - 1) &&
+                    isWall(itemY, itemX - 1) && isWall(itemY - 1, itemX) && isWall(itemY, 0)
+                ) &&
+                !(
+                    (itemY === mapHeight - 1) && (itemX === 0) &&
+                    isWall(itemY, itemX + 1) && isWall(itemY - 1, itemX) && isWall(itemY, mapWidth - 1)
+                ) &&
+                !(
+                    (itemY === 0) && !(itemX === 0) && !(itemX === mapWidth - 1) &&
+                    isWall(itemY, itemX - 1) && isWall(itemY, itemX + 1) && isWall(itemY + 1, itemX)
+                ) &&
+                !(
+                    (itemY === mapHeight - 1) && !(itemX === 0) && !(itemX === mapWidth - 1) &&
+                    isWall(itemY, itemX - 1) && isWall(itemY, itemX + 1) && isWall(itemY - 1, itemX)
+                ) &&
+                !(
+                    (itemX === 0) && !(itemY === 0) && !(itemY === mapHeight - 1) &&
+                    isWall(itemY, itemX + 1) && isWall(itemY + 1, itemX) && isWall(itemY - 1, itemX)
+                ) &&
+                !(
+                    (itemX === mapWidth - 1) && !(itemY === 0) && !(itemY === mapHeight - 1) &&
+                    isWall(itemY, itemX - 1) && isWall(itemY + 1, itemX) && isWall(itemY - 1, itemX)
                 )
             ) {
                 map[itemY][itemX] = itemClass;
@@ -42,6 +72,10 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
                     itemVar += itemsInterval;
                 }
             }
+        }
+
+        function isWall(y, x) {
+            return (map[y][x] === WALL || map[y][x] === BOSS_WALL);
         }
     }
 
