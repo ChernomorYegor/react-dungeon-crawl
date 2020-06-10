@@ -1,7 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function StartMenu({showSettings, startGame, CERTIFICATES, BOSSES, difficulty, mapWidth, mapHeight, generateItems, getRandomNumber}) {
+function StartMenu(
+    {
+        CERTIFICATES,
+        BOSSES,
+
+        difficulty,
+        mapWidth,
+        mapHeight,
+        viewportWidth,
+
+        generateItems,
+        getRandomNumber,
+
+        startGame,
+        showSettings,
+    }
+) {
     const PLAYER = 'player';
     const WALL = 'wall';
     const EMPTY = 'empty';
@@ -10,7 +26,7 @@ function StartMenu({showSettings, startGame, CERTIFICATES, BOSSES, difficulty, m
     const CERTIFICATE = 'certificate';
 
     function _startGame() {
-        let playerX = getRandomNumber(0, mapWidth - 1);
+        let playerX = getRandomNumber(0, viewportWidth - 1);
         let map = generateMap(playerX);
         console.log(map, playerX);
         startGame({map, playerX});

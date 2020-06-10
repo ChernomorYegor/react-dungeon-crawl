@@ -1,7 +1,20 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
-function Settings({difficultyOptions, difficulty, mapWidth, mapHeight, viewportWidth, viewportHeight, backToStartMenu, saveSettings}) {
+function Settings(
+    {
+        difficultyOptions,
+
+        difficulty,
+        mapWidth,
+        mapHeight,
+        viewportWidth,
+        viewportHeight,
+
+        backToStartMenu,
+        saveSettings,
+    }
+) {
     const [difficultyInner, setDifficultyInner] = useState(difficulty);
     const [mapHeightInner, setMapHeightInner] = useState(mapHeight);
     const [viewportHeightInner, setViewportHeightInner] = useState(viewportHeight);

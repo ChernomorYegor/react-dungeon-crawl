@@ -14,13 +14,15 @@ const mapStateToProps = state => {
         isDefeatedBoss: state.game.isDefeatedBoss,
         level: state.game.level,
         points: state.game.points,
-        currentOffset: state.game.currentOffset,
+        currentOffsetX: state.game.currentOffsetX,
+        currentOffsetY: state.game.currentOffsetY,
         playerX: state.game.playerX,
         playerY: state.game.playerY,
 
         difficulty: state.settings.difficulty,
         mapWidth: state.settings.mapWidth,
         mapHeight: state.settings.mapHeight,
+        viewportWidth: state.settings.viewportWidth,
         viewportHeight: state.settings.viewportHeight,
     }
 };
@@ -30,7 +32,8 @@ const mapDispatchToProps = dispatch => {
         moveUp: (newPlayerY) => dispatch(ActionsGame["GAME/MOVE_UP"](newPlayerY)),
         moveRight: (newPlayerX) => dispatch(ActionsGame["GAME/MOVE_RIGHT"](newPlayerX)),
         moveDown: (newPlayerY) => dispatch(ActionsGame["GAME/MOVE_DOWN"](newPlayerY)),
-        changeOffset: (currentOffset) => dispatch(ActionsGame["GAME/CHANGE_OFFSET"](currentOffset)),
+        changeOffsetX: (currentOffsetX) => dispatch(ActionsGame["GAME/CHANGE_OFFSET_X"](currentOffsetX)),
+        changeOffsetY: (currentOffsetY) => dispatch(ActionsGame["GAME/CHANGE_OFFSET_Y"](currentOffsetY)),
         addCertificate: (points) => dispatch(ActionsGame["GAME/ADD_CERTIFICATE"](points)),
         startLevel2: ({map}) => dispatch(ActionsGame["GAME/START_LEVEL2"]({map})),
         addSkill: (points) => dispatch(ActionsGame["GAME/ADD_SKILL"](points)),

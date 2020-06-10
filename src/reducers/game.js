@@ -10,7 +10,8 @@ const initialState = {
     isDefeatedBoss: false,
     level: 0,
     points: 0,
-    currentOffset: 0,
+    currentOffsetX: 0,
+    currentOffsetY: 0,
     playerX: 0,
     playerY: 0,
 };
@@ -61,10 +62,17 @@ const gameReducer = handleActions({
             playerY: {$set: action.payload},
         });
     },
-    [ActionsGame['GAME/CHANGE_OFFSET']]: (state, action) => {
+    [ActionsGame['GAME/CHANGE_OFFSET_X']]: (state, action) => {
         return update(state, {
             $merge: {
-                currentOffset: action.payload,
+                currentOffsetX: action.payload,
+            }
+        });
+    },
+    [ActionsGame['GAME/CHANGE_OFFSET_Y']]: (state, action) => {
+        return update(state, {
+            $merge: {
+                currentOffsetY: action.payload,
             }
         });
     },
@@ -116,7 +124,7 @@ const gameReducer = handleActions({
                 isDefeatedBoss: initialState.isDefeatedBoss,
                 level: initialState.level,
                 points: initialState.points,
-                currentOffset: initialState.currentOffset,
+                currentOffsetY: initialState.currentOffsetY,
                 playerX: initialState.playerX,
                 playerY: initialState.playerY,
             }

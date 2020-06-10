@@ -11,6 +11,7 @@ const mapStateToProps = state => {
         difficulty: state.settings.difficulty,
         mapWidth: state.settings.mapWidth,
         mapHeight: state.settings.mapHeight,
+        viewportWidth: state.settings.viewportWidth,
     }
 };
 const mapDispatchToProps = dispatch => {

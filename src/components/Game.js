@@ -12,20 +12,23 @@ function Game(
         isDefeatedBoss,
         level,
         points,
-        currentOffset,
+        currentOffsetX,
+        currentOffsetY,
         playerX,
         playerY,
 
         difficulty,
         mapWidth,
         mapHeight,
+        viewportWidth,
         viewportHeight,
 
         moveLeft,
         moveUp,
         moveRight,
         moveDown,
-        changeOffset,
+        changeOffsetX,
+        changeOffsetY,
         addCertificate,
         startLevel2,
         addSkill,
@@ -47,6 +50,8 @@ function Game(
     const SKILL = 'skill';
     const CERTIFICATE = 'certificate';
 
+    const BEFORE_BORDER = 3;
+
     const ARROW_LEFT = 'ArrowLeft';
     const ARROW_UP = 'ArrowUp';
     const ARROW_RIGHT = 'ArrowRight';
@@ -59,16 +64,19 @@ function Game(
     useEffect(() => {
         if (!isDefeatedBoss) {
             function handleWindowKeyDown(e) {
-                const beforeBorder = 3;
                 switch (e.key) {
                     case ARROW_LEFT:
                         console.log(ARROW_LEFT);
                         if (playerX === 0 && gameMap[playerY][mapWidth - 1] !== WALL && gameMap[playerY][mapWidth - 1] !== BOSS_WALL) {
+                            changeOffsetX((mapWidth - 1) - (viewportWidth - 1) );
                             addItems(gameMap[playerY][mapWidth - 1]);
                             moveLeft(mapWidth - 1);
                             break;
                         }
                         if (playerX !== 0 && gameMap[playerY][playerX - 1] !== WALL && gameMap[playerY][playerX - 1] !== BOSS_WALL) {
+                            if ((playerX <= BEFORE_BORDER + currentOffsetX) && !(playerX <= BEFORE_BORDER)) {
+                                changeOffsetX(currentOffsetX - 1);
+                            }
                             addItems(gameMap[playerY][playerX - 1]);
                             moveLeft(playerX - 1);
                             break;
@@ -80,8 +88,8 @@ function Game(
                             break;
                         }
                         if (gameMap[playerY - 1][playerX] !== WALL && gameMap[playerY - 1][playerX] !== BOSS_WALL) {
-                            if ((playerY <= beforeBorder + currentOffset) && !(playerY <= beforeBorder)) {
-                                changeOffset(currentOffset - 1);
+                            if ((playerY <= BEFORE_BORDER + currentOffsetY) && !(playerY <= BEFORE_BORDER)) {
+                                changeOffsetY(currentOffsetY - 1);
                             }
                             addItems(gameMap[playerY - 1][playerX]);
                             moveUp(playerY - 1);
@@ -91,11 +99,15 @@ function Game(
                     case ARROW_RIGHT:
                         console.log(ARROW_RIGHT);
                         if (playerX === mapWidth - 1 && gameMap[playerY][0] !== WALL && gameMap[playerY][0] !== BOSS_WALL) {
+                            changeOffsetX(0);
                             addItems(gameMap[playerY][0]);
                             moveLeft(0);
                             break;
                         }
                         if (playerX !== mapWidth - 1 && gameMap[playerY][playerX + 1] !== WALL && gameMap[playerY][playerX + 1] !== BOSS_WALL) {
+                            if ((playerX >= (viewportWidth - 1) - BEFORE_BORDER + currentOffsetX) && !(playerX >= (mapWidth - 1) - BEFORE_BORDER)) {
+                                changeOffsetX(currentOffsetX + 1);
+                            }
                             addItems(gameMap[playerY][playerX + 1]);
                             moveRight(playerX + 1);
                             break;
@@ -107,8 +119,8 @@ function Game(
                             break;
                         }
                         if (gameMap[playerY + 1][playerX] !== WALL && gameMap[playerY + 1][playerX] !== BOSS_WALL) {
-                            if ((playerY >= (viewportHeight - 1) - beforeBorder + currentOffset) && !(playerY >= (mapHeight - 1) - beforeBorder)) {
-                                changeOffset(currentOffset + 1);
+                            if ((playerY >= (viewportHeight - 1) - BEFORE_BORDER + currentOffsetY) && !(playerY >= (mapHeight - 1) - BEFORE_BORDER)) {
+                                changeOffsetY(currentOffsetY + 1);
                             }
                             addItems(gameMap[playerY + 1][playerX]);
                             moveDown(playerY + 1);
@@ -191,23 +203,24 @@ function Game(
     
     function renderMap() {
         let visibleMap = [];
-        for (let index = currentOffset; index < currentOffset + viewportHeight; index++) {
-            let visibleRowsMap = gameMap[index];
+        for (let y = currentOffsetY; y < currentOffsetY + viewportHeight; y++) {
+            let visibleRowsMap = gameMap[y].slice(currentOffsetX, currentOffsetX + viewportWidth);
             visibleMap.push(visibleRowsMap);
         }
-        console.log(visibleMap);
-        console.log(currentOffset);
+        console.log('visibleMap', visibleMap);
+        console.log('currentOffsetY', currentOffsetY);
+        console.log('currentOffsetX', currentOffsetX);
 
         return (
             visibleMap.map((rowMap, rowIndex) => {
                 return (
                     <div className={
-                        rowIndex + currentOffset === 0 ? "row-map first" : rowIndex + currentOffset === (mapHeight - 1) ? "row-map last" : "row-map"
-                    } key={rowIndex + currentOffset}>
+                        rowIndex + currentOffsetY === 0 ? "row-map first" : rowIndex + currentOffsetY === (mapHeight - 1) ? "row-map last" : "row-map"
+                    } key={rowIndex + currentOffsetY}>
                         {
                             rowMap.map((square, squareIndex) => {
                                 return (
-                                    <div className={`square ${square}`} key={`${rowIndex + currentOffset}${squareIndex}`} style={{width: `${squareSize}px`, height: `${squareSize}px`}}></div>
+                                    <div className={`square ${square}`} key={`${rowIndex + currentOffsetY}${squareIndex + currentOffsetX}`} style={{width: `${squareSize}px`, height: `${squareSize}px`}}></div>
                                 )
                             })
                         }
@@ -275,18 +288,21 @@ Game.propTypes = {
     isDefeatedBoss: PropTypes.bool.isRequired,
     level: PropTypes.number.isRequired,
     points: PropTypes.number.isRequired,
-    currentOffset: PropTypes.number.isRequired,
+    currentOffsetX: PropTypes.number.isRequired,
+    currentOffsetY: PropTypes.number.isRequired,
     playerX: PropTypes.number.isRequired,
     playerY: PropTypes.number.isRequired,
     difficulty: PropTypes.number.isRequired,
     mapWidth: PropTypes.number.isRequired,
     mapHeight: PropTypes.number.isRequired,
+    viewportWidth: PropTypes.number.isRequired,
     viewportHeight: PropTypes.number.isRequired,
     moveLeft: PropTypes.func.isRequired,
     moveUp: PropTypes.func.isRequired,
     moveRight: PropTypes.func.isRequired,
     moveDown: PropTypes.func.isRequired,
-    changeOffset: PropTypes.func.isRequired,
+    changeOffsetX: PropTypes.func.isRequired,
+    changeOffsetY: PropTypes.func.isRequired,
     addCertificate: PropTypes.func.isRequired,
     startLevel2: PropTypes.func.isRequired,
     addSkill: PropTypes.func.isRequired,
