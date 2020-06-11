@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import StartMenu from "./containers/StartMenu";
 import Game from "./containers/Game";
 import Settings from "./containers/Settings";
 
 function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
-    const windowHeight = document.documentElement.clientHeight;
-    console.log('windowHeight', windowHeight);
+    const [windowWidth, setWindowWidth] = useState(0);
+    const [windowHeight, setWindowHeight] = useState(0);
+    const [viewportWidthMax, setViewportWidthMax] = useState(0);
+    const [viewportHeightMax, setViewportHeightMax] = useState(0);
+
     const EMPTY = 'empty';
     const WALL = 'wall';
     const BOSS_WALL = 'boss-wall';
+
+    const MIN_SQUARE_SIZE = 25;
+
+    useEffect(() => {
+        setWindowWidth(document.documentElement.clientWidth);
+        setWindowHeight(document.documentElement.clientHeight);
+        setViewportWidthMax(10 * Math.floor((windowWidth * 9.1) / (100 * MIN_SQUARE_SIZE)));
+        setViewportHeightMax( 10 * Math.floor((windowHeight * 5.1) / (100 * MIN_SQUARE_SIZE)));
+    },[]);
 
     function generateItems(map, items, itemClass) {
         let itemsInterval = Math.floor(mapHeight / items);
@@ -88,8 +100,8 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
     return (
         <div style={{height: windowHeight + 'px'}}>
             { (!isSettingsShow && !gameOn) && <StartMenu generateItems={generateItems} getRandomNumber={getRandomNumber}/> }
-            { gameOn && <Game windowHeight={windowHeight} generateItems={generateItems}/> }
-            { isSettingsShow && <Settings /> }
+            { gameOn && <Game windowWidth={windowWidth} windowHeight={windowHeight} generateItems={generateItems}/> }
+            { isSettingsShow && <Settings viewportWidthMax={viewportWidthMax} viewportHeightMax={viewportHeightMax} /> }
         </div>
     );
 }

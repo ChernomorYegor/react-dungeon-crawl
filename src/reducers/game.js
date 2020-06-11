@@ -124,6 +124,7 @@ const gameReducer = handleActions({
                 isDefeatedBoss: initialState.isDefeatedBoss,
                 level: initialState.level,
                 points: initialState.points,
+                currentOffsetX: initialState.currentOffsetX,
                 currentOffsetY: initialState.currentOffsetY,
                 playerX: initialState.playerX,
                 playerY: initialState.playerY,

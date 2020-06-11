@@ -13,20 +13,29 @@ function Settings(
 
         backToStartMenu,
         saveSettings,
+
+        viewportWidthMax,
+        viewportHeightMax,
     }
 ) {
     const [difficultyInner, setDifficultyInner] = useState(difficulty);
+    const [mapWidthInner, setMapWidthInner] = useState(mapWidth);
     const [mapHeightInner, setMapHeightInner] = useState(mapHeight);
+    const [viewportWidthInner, setViewportWidthInner] = useState(viewportWidth);
     const [viewportHeightInner, setViewportHeightInner] = useState(viewportHeight);
 
     const DIFFICULTY = 'Difficulty';
+    const MAP_WIDTH = 'Map Width';
     const MAP_HEIGHT = 'Map Height';
+    const VIEWPORT_WIDTH = 'Viewport Width';
     const VIEWPORT_HEIGHT = 'Viewport Height';
 
     function _change(name, e) {
         switch(name) {
             case DIFFICULTY: setDifficultyInner(+e.target.value); break;
+            case MAP_WIDTH: setMapWidthInner(+e.target.value); break;
             case MAP_HEIGHT: setMapHeightInner(+e.target.value); break;
+            case VIEWPORT_WIDTH: setViewportWidthInner(+e.target.value); break;
             case VIEWPORT_HEIGHT: setViewportHeightInner(+e.target.value); break;
             default: break;
         }
@@ -34,8 +43,8 @@ function Settings(
 
     function _saveSettings(e) {
         e.preventDefault();
-        console.log({difficultyInner, mapHeightInner, viewportHeightInner});
-        saveSettings({difficultyInner, mapHeightInner, viewportHeightInner});
+        console.log({difficultyInner, mapWidthInner, mapHeightInner, viewportWidthInner, viewportHeightInner});
+        saveSettings({difficultyInner, mapWidthInner, mapHeightInner, viewportWidthInner, viewportHeightInner});
     }
 
     return (
@@ -53,21 +62,53 @@ function Settings(
                         <option value={difficultyOptions.hard}>Hard</option>
                     </select>
                 </div>
-                {/*<div>*/}
-                {/*    <label htmlFor="map-width">Map Width:</label>*/}
-                {/*    <input id="map-width" type="number" value={mapWidth} min="10" max="250" step="5" onChange={_change.bind(this, 'Map Width')} />*/}
-                {/*</div>*/}
+                <div>
+                    <label htmlFor="map-width">Map Width <small>(20 - 200)</small>:</label>
+                    <input
+                        id="map-width"
+                        type="number"
+                        value={mapWidthInner}
+                        min="20"
+                        max="200"
+                        step="5"
+                        onChange={_change.bind(this, MAP_WIDTH)}
+                    />
+                </div>
                 <div>
                     <label htmlFor="map-height">Map Height <small>(50 - 500)</small>:</label>
-                    <input id="map-height" type="number" value={mapHeightInner} min="50" max="500" step="5" onChange={_change.bind(this, MAP_HEIGHT)} />
+                    <input
+                        id="map-height"
+                        type="number"
+                        value={mapHeightInner}
+                        min="50"
+                        max="500"
+                        step="5"
+                        onChange={_change.bind(this, MAP_HEIGHT)}
+                    />
                 </div>
-                {/*<div>*/}
-                {/*    <label htmlFor="viewport-width">Viewport Width:</label>*/}
-                {/*    <input id="viewport-width" type="number" value={viewportWidth} min="10" max="20" step="1" onChange={_change.bind(this, 'Viewport Width')} />*/}
-                {/*</div>*/}
                 <div>
-                    <label htmlFor="viewport-height">Viewport Height <small>(10 - 20)</small>:</label>
-                    <input id="viewport-height" type="number" value={viewportHeightInner} min="10" max="20" step="1" onChange={_change.bind(this, VIEWPORT_HEIGHT)} />
+                    <label htmlFor="viewport-width">Viewport Width <small>(10 - {mapWidth <= viewportWidth ? mapWidth : viewportWidthMax})</small>:</label>
+                    <input
+                        id="viewport-width"
+                        type="number"
+                        value={viewportWidthInner}
+                        min="10"
+                        max={mapWidth <= viewportWidth ? mapWidth : viewportWidthMax}
+                        step="1"
+                        onChange={_change.bind(this, VIEWPORT_WIDTH)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="viewport-height">Viewport Height <small>(10 - {viewportHeightMax})</small>:</label>
+                    <input
+                        id="viewport-height"
+                        type="number"
+                        value={viewportHeightInner}
+                        min="10"
+                        max={viewportHeightMax}
+                        step="1"
+                        onChange={_change.bind(this, VIEWPORT_HEIGHT)}
+                    />
                 </div>
                 <button type="submit" className="btn-save">Save</button>
             </form>
@@ -84,6 +125,8 @@ Settings.propTypes = {
     viewportHeight: PropTypes.number.isRequired,
     backToStartMenu: PropTypes.func.isRequired,
     saveSettings: PropTypes.func.isRequired,
+    viewportWidthMax: PropTypes.number.isRequired,
+    viewportHeightMax: PropTypes.number.isRequired,
 };
 
 export default Settings;

@@ -37,11 +37,13 @@ function Game(
         quitGame,
         endGame,
 
+        windowWidth,
         windowHeight,
         generateItems,
     }
 ) {
     const [message, setMessage] = useState('');
+    const [squareSize, setSquareSize] = useState(0);
 
     const EMPTY = 'empty';
     const WALL = 'wall';
@@ -58,8 +60,11 @@ function Game(
     const ARROW_DOWN = 'ArrowDown';
     const ESCAPE = 'Escape';
 
-    const squareSize = Math.floor((windowHeight * 51) / (100 * viewportHeight));
-    console.log('squareSize',squareSize);
+    useEffect(() => {
+        const squareWidth = Math.floor((windowWidth * 91) / (100 * viewportWidth));
+        const squareHeight = Math.floor((windowHeight * 51) / (100 * viewportHeight));
+        squareWidth < squareHeight ? setSquareSize(squareWidth) :  setSquareSize(squareHeight);
+    },[]);
 
     useEffect(() => {
         if (!isDefeatedBoss) {
@@ -168,7 +173,7 @@ function Game(
                 console.log(`map`, map);
                 startLevel2({map});
             }
-            addCertificate(Math.round(calculatePoints(1)));
+            addCertificate(Math.round(calculatePoints(10)));
         }
         if (mapCoordinates === SKILL) {
             if (currentSkills === SKILLS - 1) {
@@ -183,16 +188,16 @@ function Game(
                 console.log(`map`, map);
                 removeBossWalls({map});
             }
-            addSkill(Math.round(calculatePoints(10)));
+            addSkill(Math.round(calculatePoints(100)));
         }
         if (mapCoordinates === BOSS) {
-            addPointsBoss(Math.round(calculatePoints(30)));
+            addPointsBoss(Math.round(calculatePoints(300)));
             endGame();
         }
     }
 
     function calculatePoints(factor) {
-        return (factor * difficulty * (mapHeight / 100) * (10 / viewportHeight))
+        return (factor * difficulty * (mapWidth / 100) * (mapHeight / 100) * (10 / viewportWidth) * (10 / viewportHeight))
     }
 
     function _quitGame() {
@@ -310,6 +315,7 @@ Game.propTypes = {
     addPointsBoss: PropTypes.func.isRequired,
     quitGame: PropTypes.func.isRequired,
     endGame: PropTypes.func.isRequired,
+    windowWidth: PropTypes.number.isRequired,
     windowHeight: PropTypes.number.isRequired,
     generateItems: PropTypes.func.isRequired,
 };

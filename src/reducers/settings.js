@@ -30,7 +30,9 @@ const settingsReducer = handleActions({
         return update(state, {
             $merge: {
                 difficulty: action.payload.difficultyInner,
+                mapWidth: action.payload.mapWidthInner,
                 mapHeight: action.payload.mapHeightInner,
+                viewportWidth: action.payload.viewportWidthInner,
                 viewportHeight: action.payload.viewportHeightInner,
             }
         });
