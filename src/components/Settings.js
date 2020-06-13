@@ -12,17 +12,18 @@ function Settings(
         viewportHeight,
 
         backToStartMenu,
+
         saveSettings,
 
         viewportWidthMax,
         viewportHeightMax,
     }
 ) {
-    const [difficultyInner, setDifficultyInner] = useState(difficulty);
-    const [mapWidthInner, setMapWidthInner] = useState(mapWidth);
-    const [mapHeightInner, setMapHeightInner] = useState(mapHeight);
-    const [viewportWidthInner, setViewportWidthInner] = useState(viewportWidth);
-    const [viewportHeightInner, setViewportHeightInner] = useState(viewportHeight);
+    const [difficultyLocal, setDifficultyLocal] = useState(difficulty);
+    const [mapWidthLocal, setMapWidthLocal] = useState(mapWidth);
+    const [mapHeightLocal, setMapHeightLocal] = useState(mapHeight);
+    const [viewportWidthLocal, setViewportWidthLocal] = useState(viewportWidth);
+    const [viewportHeightLocal, setViewportHeightLocal] = useState(viewportHeight);
 
     const DIFFICULTY = 'Difficulty';
     const MAP_WIDTH = 'Map Width';
@@ -32,19 +33,25 @@ function Settings(
 
     function _change(name, e) {
         switch(name) {
-            case DIFFICULTY: setDifficultyInner(+e.target.value); break;
-            case MAP_WIDTH: setMapWidthInner(+e.target.value); break;
-            case MAP_HEIGHT: setMapHeightInner(+e.target.value); break;
-            case VIEWPORT_WIDTH: setViewportWidthInner(+e.target.value); break;
-            case VIEWPORT_HEIGHT: setViewportHeightInner(+e.target.value); break;
+            case DIFFICULTY: setDifficultyLocal(+e.target.value); break;
+            case MAP_WIDTH: setMapWidthLocal(+e.target.value); break;
+            case MAP_HEIGHT: setMapHeightLocal(+e.target.value); break;
+            case VIEWPORT_WIDTH: setViewportWidthLocal(+e.target.value); break;
+            case VIEWPORT_HEIGHT: setViewportHeightLocal(+e.target.value); break;
             default: break;
         }
     }
 
     function _saveSettings(e) {
         e.preventDefault();
-        console.log({difficultyInner, mapWidthInner, mapHeightInner, viewportWidthInner, viewportHeightInner});
-        saveSettings({difficultyInner, mapWidthInner, mapHeightInner, viewportWidthInner, viewportHeightInner});
+        console.log({difficultyLocal, mapWidthLocal, mapHeightLocal, viewportWidthLocal, viewportHeightLocal});
+        saveSettings({
+            difficultyLocal,
+            mapWidthLocal,
+            mapHeightLocal,
+            viewportWidthLocal,
+            viewportHeightLocal,
+        });
     }
 
     return (
@@ -56,7 +63,7 @@ function Settings(
             <form className="settings-form" onSubmit={_saveSettings}>
                 <div>
                     <label htmlFor="difficulty">Difficulty:</label>
-                    <select id="difficulty" value={difficultyInner} onChange={_change.bind(this, DIFFICULTY)}>
+                    <select id="difficulty" value={difficultyLocal} onChange={_change.bind(this, DIFFICULTY)}>
                         <option value={difficultyOptions.easy}>Easy</option>
                         <option value={difficultyOptions.medium}>Medium</option>
                         <option value={difficultyOptions.hard}>Hard</option>
@@ -67,7 +74,7 @@ function Settings(
                     <input
                         id="map-width"
                         type="number"
-                        value={mapWidthInner}
+                        value={mapWidthLocal}
                         min="20"
                         max="200"
                         step="5"
@@ -79,7 +86,7 @@ function Settings(
                     <input
                         id="map-height"
                         type="number"
-                        value={mapHeightInner}
+                        value={mapHeightLocal}
                         min="50"
                         max="500"
                         step="5"
@@ -91,7 +98,7 @@ function Settings(
                     <input
                         id="viewport-width"
                         type="number"
-                        value={viewportWidthInner}
+                        value={viewportWidthLocal}
                         min="10"
                         max={mapWidth <= viewportWidth ? mapWidth : viewportWidthMax}
                         step="1"
@@ -103,7 +110,7 @@ function Settings(
                     <input
                         id="viewport-height"
                         type="number"
-                        value={viewportHeightInner}
+                        value={viewportHeightLocal}
                         min="10"
                         max={viewportHeightMax}
                         step="1"

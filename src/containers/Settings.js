@@ -19,19 +19,19 @@ const mapDispatchToProps = dispatch => {
         backToStartMenu: () => dispatch(ActionsSettings["SETTINGS/HIDE_SETTINGS"]()),
         saveSettings: (
             {
-                difficultyInner,
-                mapWidthInner,
-                mapHeightInner,
-                viewportWidthInner,
-                viewportHeightInner,
+                difficultyLocal,
+                mapWidthLocal,
+                mapHeightLocal,
+                viewportWidthLocal,
+                viewportHeightLocal,
             }
         ) => dispatch(ActionsSettings["SETTINGS/SAVE_SETTINGS"](
             {
-                difficultyInner,
-                mapWidthInner,
-                mapHeightInner,
-                viewportWidthInner,
-                viewportHeightInner,
+                difficultyLocal,
+                mapWidthLocal,
+                mapHeightLocal,
+                viewportWidthLocal,
+                viewportHeightLocal,
             }
         )),
     };

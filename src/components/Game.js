@@ -43,7 +43,6 @@ function Game(
     }
 ) {
     const [message, setMessage] = useState('');
-    const [squareSize, setSquareSize] = useState(0);
 
     const EMPTY = 'empty';
     const WALL = 'wall';
@@ -60,11 +59,11 @@ function Game(
     const ARROW_DOWN = 'ArrowDown';
     const ESCAPE = 'Escape';
 
-    useEffect(() => {
-        const squareWidth = Math.floor((windowWidth * 91) / (100 * viewportWidth));
-        const squareHeight = Math.floor((windowHeight * 51) / (100 * viewportHeight));
-        squareWidth < squareHeight ? setSquareSize(squareWidth) :  setSquareSize(squareHeight);
-    },[]);
+    const squareWidth = Math.floor((windowWidth * 91) / (100 * viewportWidth));
+    const squareHeight = Math.floor((windowHeight * 51) / (100 * viewportHeight));
+
+    let squareSize = 0;
+    squareWidth < squareHeight ? squareSize = squareWidth : squareSize = squareHeight;
 
     useEffect(() => {
         if (!isDefeatedBoss) {
@@ -225,7 +224,11 @@ function Game(
                         {
                             rowMap.map((square, squareIndex) => {
                                 return (
-                                    <div className={`square ${square}`} key={`${rowIndex + currentOffsetY}${squareIndex + currentOffsetX}`} style={{width: `${squareSize}px`, height: `${squareSize}px`}}></div>
+                                    <div
+                                        className={`square ${square}`}
+                                        key={`${rowIndex + currentOffsetY}${squareIndex + currentOffsetX}`}
+                                        style={{width: `${squareSize}px`, height: `${squareSize}px`}}
+                                    ></div>
                                 )
                             })
                         }

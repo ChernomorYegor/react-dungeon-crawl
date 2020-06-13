@@ -1,14 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import StartMenu from "./containers/StartMenu";
 import Game from "./containers/Game";
 import Settings from "./containers/Settings";
 
-function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
-    const [windowWidth, setWindowWidth] = useState(0);
-    const [windowHeight, setWindowHeight] = useState(0);
-    const [viewportWidthMax, setViewportWidthMax] = useState(0);
-    const [viewportHeightMax, setViewportHeightMax] = useState(0);
+function App({isSettingsShow, gameOn, mapWidth, mapHeight, getSettings}) {
 
     const EMPTY = 'empty';
     const WALL = 'wall';
@@ -16,12 +12,14 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight}) {
 
     const MIN_SQUARE_SIZE = 25;
 
+    const windowWidth = document.documentElement.clientWidth;
+    const windowHeight = document.documentElement.clientHeight;
+    const viewportWidthMax = 10 * Math.floor((windowWidth * 9.1) / (100 * MIN_SQUARE_SIZE));
+    const viewportHeightMax = 10 * Math.floor((windowHeight * 5.1) / (100 * MIN_SQUARE_SIZE));
+
     useEffect(() => {
-        setWindowWidth(document.documentElement.clientWidth);
-        setWindowHeight(document.documentElement.clientHeight);
-        setViewportWidthMax(10 * Math.floor((windowWidth * 9.1) / (100 * MIN_SQUARE_SIZE)));
-        setViewportHeightMax( 10 * Math.floor((windowHeight * 5.1) / (100 * MIN_SQUARE_SIZE)));
-    },[]);
+        getSettings();
+    }, []);
 
     function generateItems(map, items, itemClass) {
         let itemsInterval = Math.floor(mapHeight / items);
@@ -111,6 +109,7 @@ App.propTypes = {
     gameOn: PropTypes.bool,
     mapWidth: PropTypes.number.isRequired,
     mapHeight: PropTypes.number.isRequired,
+    getSettings: PropTypes.func.isRequired,
 };
 
 export default App;

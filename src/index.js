@@ -9,7 +9,14 @@ import reducer from './reducers';
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
 
-const store = createStore(reducer, applyMiddleware(logger));
+import createSagaMiddleware from 'redux-saga';
+import settingsSaga from './sagas/settingsSaga';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
+
+sagaMiddleware.run(settingsSaga);
 
 ReactDOM.render(
     <React.StrictMode>

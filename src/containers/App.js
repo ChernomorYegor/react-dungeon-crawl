@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import App from "../App";
+import ActionsSettings from "../actions/settings";
 
 const mapStateToProps = state => {
     return {
@@ -11,7 +12,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-
+        getSettings: () => dispatch(ActionsSettings["SETTINGS/GET_SETTINGS"]()),
     };
 };
 
