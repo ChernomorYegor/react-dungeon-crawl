@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-dungeon-crawl/static/css/main.c0beb38d.chunk.css",
-    "main.js": "/react-dungeon-crawl/static/js/main.b5b96b0f.chunk.js",
-    "main.js.map": "/react-dungeon-crawl/static/js/main.b5b96b0f.chunk.js.map",
+    "main.js": "/react-dungeon-crawl/static/js/main.55ee2c1b.chunk.js",
+    "main.js.map": "/react-dungeon-crawl/static/js/main.55ee2c1b.chunk.js.map",
     "runtime-main.js": "/react-dungeon-crawl/static/js/runtime-main.eb623704.js",
     "runtime-main.js.map": "/react-dungeon-crawl/static/js/runtime-main.eb623704.js.map",
-    "static/js/2.b4e696bd.chunk.js": "/react-dungeon-crawl/static/js/2.b4e696bd.chunk.js",
-    "static/js/2.b4e696bd.chunk.js.map": "/react-dungeon-crawl/static/js/2.b4e696bd.chunk.js.map",
+    "static/js/2.ad73d3fa.chunk.js": "/react-dungeon-crawl/static/js/2.ad73d3fa.chunk.js",
+    "static/js/2.ad73d3fa.chunk.js.map": "/react-dungeon-crawl/static/js/2.ad73d3fa.chunk.js.map",
     "index.html": "/react-dungeon-crawl/index.html",
-    "precache-manifest.384fdd6df4813a29a285fecf2b5260be.js": "/react-dungeon-crawl/precache-manifest.384fdd6df4813a29a285fecf2b5260be.js",
+    "precache-manifest.eb8c4b68e99e251d1c8bb017a63d5d1b.js": "/react-dungeon-crawl/precache-manifest.eb8c4b68e99e251d1c8bb017a63d5d1b.js",
     "service-worker.js": "/react-dungeon-crawl/service-worker.js",
     "static/css/main.c0beb38d.chunk.css.map": "/react-dungeon-crawl/static/css/main.c0beb38d.chunk.css.map",
-    "static/js/2.b4e696bd.chunk.js.LICENSE.txt": "/react-dungeon-crawl/static/js/2.b4e696bd.chunk.js.LICENSE.txt"
+    "static/js/2.ad73d3fa.chunk.js.LICENSE.txt": "/react-dungeon-crawl/static/js/2.ad73d3fa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.eb623704.js",
-    "static/js/2.b4e696bd.chunk.js",
+    "static/js/2.ad73d3fa.chunk.js",
     "static/css/main.c0beb38d.chunk.css",
-    "static/js/main.b5b96b0f.chunk.js"
+    "static/js/main.55ee2c1b.chunk.js"
   ]
 }
