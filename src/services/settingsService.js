@@ -3,12 +3,14 @@ const DUNGEON_CRAWL_SETTINGS_KEY = 'DUNGEON_CRAWL_SETTINGS_KEY';
 class SettingsService {
     get() {
         const settingsRaw = window.localStorage.getItem(DUNGEON_CRAWL_SETTINGS_KEY);
+        console.log(settingsRaw);
+        // let localSettings = {};
+        //
+        // if (settingsRaw) {
+        //     localSettings = JSON.parse(settingsRaw);
+        // }
 
-        let localSettings = {};
-
-        if (settingsRaw) {
-            localSettings = JSON.parse(settingsRaw);
-        }
+        let localSettings = JSON.parse(settingsRaw);
 
         return localSettings;
     }
