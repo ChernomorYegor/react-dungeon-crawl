@@ -27,15 +27,18 @@ const settingsReducer = handleActions({
         });
     },
     [ActionsSettings['SETTINGS/GET_SETTINGS_SUCCESSFULLY']]: (state, action) => {
-        return update(state, {
-            $merge: {
-                difficulty: action.payload.difficultyLocal,
-                mapWidth: action.payload.mapWidthLocal,
-                mapHeight: action.payload.mapHeightLocal,
-                viewportWidth: action.payload.viewportWidthLocal,
-                viewportHeight: action.payload.viewportHeightLocal,
-            }
-        });
+        console.log(action.payload);
+        if (action.payload !== null) {
+            return update(state, {
+                $merge: {
+                    difficulty: action.payload.difficultyLocal,
+                    mapWidth: action.payload.mapWidthLocal,
+                    mapHeight: action.payload.mapHeightLocal,
+                    viewportWidth: action.payload.viewportWidthLocal,
+                    viewportHeight: action.payload.viewportHeightLocal,
+                }
+            });
+        }
     },
     [ActionsSettings['SETTINGS/SAVE_SETTINGS_SUCCESSFULLY']]: (state, action) => {
         return update(state, {
