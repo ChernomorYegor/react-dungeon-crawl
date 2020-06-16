@@ -16,6 +16,7 @@ function StartMenu(
 
         startGame,
         showSettings,
+        showTopResults,
     }
 ) {
     const PLAYER = 'player';
@@ -96,21 +97,24 @@ function StartMenu(
             <div className="start-menu">
                 <button type="button" onClick={_startGame}>Start Game</button>
                 <button type="button" onClick={showSettings}>Settings</button>
+                <button type="button" onClick={showTopResults}>Top Results</button>
             </div>
         </div>
     );
 }
 
 StartMenu.propTypes = {
-    showSettings: PropTypes.func.isRequired,
-    startGame: PropTypes.func.isRequired,
     CERTIFICATES: PropTypes.number.isRequired,
     BOSSES: PropTypes.number.isRequired,
     difficulty: PropTypes.number.isRequired,
     mapWidth: PropTypes.number.isRequired,
     mapHeight: PropTypes.number.isRequired,
+    viewportWidth: PropTypes.number.isRequired,
     generateItems: PropTypes.func.isRequired,
     getRandomNumber: PropTypes.func.isRequired,
+    startGame: PropTypes.func.isRequired,
+    showSettings: PropTypes.func.isRequired,
+    showTopResults: PropTypes.func.isRequired,
 };
 
 export default StartMenu;

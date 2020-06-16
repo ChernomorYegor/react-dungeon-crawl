@@ -11,12 +11,14 @@ import logger from 'redux-logger';
 
 import createSagaMiddleware from 'redux-saga';
 import settingsSaga from './sagas/settingsSaga';
+import topResultsSaga from "./sagas/topResultsSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
 
 sagaMiddleware.run(settingsSaga);
+sagaMiddleware.run(topResultsSaga);
 
 ReactDOM.render(
     <React.StrictMode>

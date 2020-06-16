@@ -4,10 +4,13 @@ import ActionsSettings from "../actions/settings";
 
 const mapStateToProps = state => {
     return {
-        isSettingsShow: state.settings.isSettingsShow,
         gameOn: state.game.gameOn,
+
+        isSettingsShow: state.settings.isSettingsShow,
         mapWidth: state.settings.mapWidth,
         mapHeight: state.settings.mapHeight,
+
+        isTopResultsShow: state.topResults.isTopResultsShow,
     }
 };
 const mapDispatchToProps = dispatch => {

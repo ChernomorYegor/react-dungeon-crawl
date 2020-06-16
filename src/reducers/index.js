@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
-import settings from './settings';
 import game from './game';
+import settings from './settings';
+import topResults from './topResults';
 
-export default combineReducers({ settings, game });
+export default combineReducers({ game, settings, topResults });

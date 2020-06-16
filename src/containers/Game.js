@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
-import ActionsGame from "../actions/game";
 import gameOptions from "../gameOptions/gameOptions";
+import ActionsGame from "../actions/game";
+import ActionsTopResults from "../actions/topResults";
 import Game from "../components/Game";
 
 const mapStateToProps = state => {
@@ -24,6 +25,9 @@ const mapStateToProps = state => {
         mapHeight: state.settings.mapHeight,
         viewportWidth: state.settings.viewportWidth,
         viewportHeight: state.settings.viewportHeight,
+
+        playerName: state.topResults.playerName,
+        isPlayerNameError: state.topResults.isPlayerNameError,
     }
 };
 const mapDispatchToProps = dispatch => {
@@ -41,6 +45,10 @@ const mapDispatchToProps = dispatch => {
         addPointsBoss: (points) => dispatch(ActionsGame["GAME/ADD_POINTS_BOSS"](points)),
         quitGame: () => dispatch(ActionsGame["GAME/QUIT_GAME"]()),
         endGame: () => dispatch(ActionsGame["GAME/END_GAME"]()),
+
+        onPlayerNameChange: (e) => dispatch(ActionsTopResults["TOP_RESULTS/PLAYER_NAME_CHANGED"](e)),
+        saveResult: () => dispatch(ActionsTopResults["TOP_RESULTS/SAVE_RESULT"]()),
+        playerNameError: () => dispatch(ActionsTopResults["TOP_RESULTS/PLAYER_NAME_ERROR"]()),
     };
 };
 

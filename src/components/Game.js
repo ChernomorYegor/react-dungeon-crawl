@@ -23,6 +23,9 @@ function Game(
         viewportWidth,
         viewportHeight,
 
+        playerName,
+        isPlayerNameError,
+
         moveLeft,
         moveUp,
         moveRight,
@@ -36,6 +39,10 @@ function Game(
         addPointsBoss,
         quitGame,
         endGame,
+
+        onPlayerNameChange,
+        saveResult,
+        playerNameError,
 
         windowWidth,
         windowHeight,
@@ -204,7 +211,17 @@ function Game(
             quitGame();
         }
     }
-    
+
+    function _saveResult(e) {
+        e.preventDefault();
+        if (playerName.trim()) {
+            saveResult();
+            quitGame();
+        } else {
+            playerNameError();
+        }
+    }
+
     function renderMap() {
         let visibleMap = [];
         for (let y = currentOffsetY; y < currentOffsetY + viewportHeight; y++) {
@@ -228,14 +245,16 @@ function Game(
                                         className={`square ${square}`}
                                         key={`${rowIndex + currentOffsetY}${squareIndex + currentOffsetX}`}
                                         style={{width: `${squareSize}px`, height: `${squareSize}px`}}
-                                    ></div>
+                                    >
+                                        {square === 'player' && <img src={process.env.PUBLIC_URL + '/images/player.png'} alt="player" style={{width: `${squareSize}px`, height: `${squareSize}px`}} />}
+                                    </div>
                                 )
                             })
                         }
                     </div>
                 )
             })
-        )
+        );
     }
 
     function renderGameOver() {
@@ -244,10 +263,19 @@ function Game(
                 <p>Congratulations!</p>
                 <p>You left the dungeon!</p>
                 <p className="result">Your result: {points} points.</p>
+                <form className="result-form" onSubmit={_saveResult}>
+                    <input
+                        type="text"
+                        placeholder={isPlayerNameError ? "Cannot Be Empty" : "Enter Your Name"}
+                        value={playerName}
+                        onChange={onPlayerNameChange}
+                    />
+                    <button type="submit" className="btn-save">Save & Exit</button>
+                </form>
             </div>
-        )
+        );
     }
-    
+
     return (
         <div className="game">
             <div className="top-bar-head">
@@ -305,6 +333,8 @@ Game.propTypes = {
     mapHeight: PropTypes.number.isRequired,
     viewportWidth: PropTypes.number.isRequired,
     viewportHeight: PropTypes.number.isRequired,
+    playerName: PropTypes.string.isRequired,
+    isPlayerNameError: PropTypes.bool.isRequired,
     moveLeft: PropTypes.func.isRequired,
     moveUp: PropTypes.func.isRequired,
     moveRight: PropTypes.func.isRequired,
@@ -318,6 +348,9 @@ Game.propTypes = {
     addPointsBoss: PropTypes.func.isRequired,
     quitGame: PropTypes.func.isRequired,
     endGame: PropTypes.func.isRequired,
+    onPlayerNameChange: PropTypes.func.isRequired,
+    saveResult: PropTypes.func.isRequired,
+    playerNameError: PropTypes.func.isRequired,
     windowWidth: PropTypes.number.isRequired,
     windowHeight: PropTypes.number.isRequired,
     generateItems: PropTypes.func.isRequired,

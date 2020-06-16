@@ -32,6 +32,11 @@ h3 {
   font-size: 36px;
 }
 
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 label {
   display: inline-block;
   text-align: right;
@@ -40,6 +45,12 @@ label {
 label small{
   font-size: 17px;
 }
+
+::-webkit-input-placeholder {color: #999;}
+::-moz-placeholder          {color: #999; opacity: 1;}
+:-moz-placeholder           {color: #999; opacity: 1;}
+:-ms-input-placeholder      {color: #999;}
+::-ms-input-placeholder     {color: #999;}
 
 button, select, input {
   display: block;
@@ -92,6 +103,7 @@ progress[value]::-moz-progress-bar {
   border-radius:3px;
 }
 
+
 /* START MENU */
 
 .start-container {
@@ -104,13 +116,14 @@ progress[value]::-moz-progress-bar {
 }
 
 .start-menu {
-  margin-bottom: 15%;
+  margin-bottom: 5%;
 }
 
 .start-menu button {
   width: 200px;
   margin: 25px 0;
 }
+
 
 /* GAME */
 
@@ -203,7 +216,10 @@ progress[value]::-moz-progress-bar {
 .skill {background: orange;}
 .boss-wall {background: yellow;}
 .boss {background: red;}
-.player {background: #fff;}
+.player img {background: #111;}
+/*.player {*/
+/*  background: #fff url(/images/player.png) no-repeat;*/
+/*}*/
 
 .game-over p {
   font-size: 38px;
@@ -214,6 +230,23 @@ progress[value]::-moz-progress-bar {
   margin-top: 50px;
   font-size: 30px;
 }
+
+.result-form {
+  margin-top: 50px;
+}
+
+.result-form input {
+  display: inline-block;
+  width: 250px;
+  margin: 0 25px;
+  text-align: center;
+}
+
+.result-form .btn-save {
+    display: inline-block;
+    width: 150px;
+}
+
 
 /* SETTINGS */
 
@@ -245,7 +278,7 @@ progress[value]::-moz-progress-bar {
   width: 250px;
 }
 
-.btn-save {
+.settings-form .btn-save {
   margin: 30px auto;
   width: 100px;
 }
@@ -256,4 +289,47 @@ progress[value]::-moz-progress-bar {
 
 .btn-save:active{
   background: #333;
+}
+
+
+/* TOP RESULTS */
+
+.top-results {
+  height: 100%;
+  background: #1d1f20;
+}
+
+.top-results-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.top-results-body table {
+  width: 50%;
+}
+
+.top-results-body th {
+  padding: 12px;
+  border-bottom: 1px solid #f64a45;
+}
+
+.top-results-body td {
+  padding: 12px;
+  text-align: center;
+  /*border: 1px solid #f64a45;*/
+}
+
+.top-results-body tbody tr:first-child td {color: gold;}
+.top-results-body tbody tr:nth-child(2) td {color: #999;}
+.top-results-body tbody tr:nth-child(3) td {color: #cd7f32;}
+
+.top-results-body td:first-child {
+  width: 10%;
+}
+
+.no-results {
+  text-align: center;
 }

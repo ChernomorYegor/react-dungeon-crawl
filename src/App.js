@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import StartMenu from "./containers/StartMenu";
 import Game from "./containers/Game";
 import Settings from "./containers/Settings";
+import TopResults from "./containers/TopResults";
 
-function App({isSettingsShow, gameOn, mapWidth, mapHeight, getSettings}) {
+function App({gameOn, isSettingsShow, mapWidth, mapHeight, isTopResultsShow, getSettings}) {
 
     const EMPTY = 'empty';
     const WALL = 'wall';
@@ -97,18 +98,20 @@ function App({isSettingsShow, gameOn, mapWidth, mapHeight, getSettings}) {
 
     return (
         <div style={{height: windowHeight + 'px'}}>
-            { (!isSettingsShow && !gameOn) && <StartMenu generateItems={generateItems} getRandomNumber={getRandomNumber}/> }
+            { (!gameOn && !isSettingsShow && !isTopResultsShow) && <StartMenu generateItems={generateItems} getRandomNumber={getRandomNumber}/> }
             { gameOn && <Game windowWidth={windowWidth} windowHeight={windowHeight} generateItems={generateItems}/> }
             { isSettingsShow && <Settings viewportWidthMax={viewportWidthMax} viewportHeightMax={viewportHeightMax} /> }
+            { isTopResultsShow && <TopResults /> }
         </div>
     );
 }
 
 App.propTypes = {
-    isSettingsShow: PropTypes.bool,
     gameOn: PropTypes.bool,
+    isSettingsShow: PropTypes.bool,
     mapWidth: PropTypes.number.isRequired,
     mapHeight: PropTypes.number.isRequired,
+    isTopResultsShow: PropTypes.bool.isRequired,
     getSettings: PropTypes.func.isRequired,
 };
 

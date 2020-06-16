@@ -2,9 +2,9 @@ import {call, put, takeLatest, all} from 'redux-saga/effects';
 import settingsService from "../services/settingsService";
 import ActionsSettings from "../actions/settings";
 
-function* getSettings(action) {
+function* getSettings() {
     try {
-        let localSettings = yield call(settingsService.get, action.payload);
+        let localSettings = yield call(settingsService.get);
 
         yield put(ActionsSettings['SETTINGS/GET_SETTINGS_SUCCESSFULLY'](localSettings));
     } catch ({message}) {
