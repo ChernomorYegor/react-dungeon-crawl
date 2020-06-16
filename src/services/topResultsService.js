@@ -6,9 +6,15 @@ const DUNGEON_CRAWL_TOP_RESULTS_KEY = 'DUNGEON_CRAWL_TOP_RESULTS_KEY';
 
 class topResultsService {
     get() {
-        const topResultsRaw = window.localStorage.getItem(DUNGEON_CRAWL_TOP_RESULTS_KEY);
+        let topResults = window.localStorage.getItem(DUNGEON_CRAWL_TOP_RESULTS_KEY);
 
-        return JSON.parse(topResultsRaw);
+        if (!topResults) {
+            topResults = [];
+        } else {
+            topResults = JSON.parse(topResults);
+        }
+
+        return topResults;
     }
 
     save(topResults, name, points) {
