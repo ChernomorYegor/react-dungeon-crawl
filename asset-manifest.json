@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/react-dungeon-crawl/static/css/main.ba283831.chunk.css",
-    "main.js": "/react-dungeon-crawl/static/js/main.e3ba01a1.chunk.js",
-    "main.js.map": "/react-dungeon-crawl/static/js/main.e3ba01a1.chunk.js.map",
+    "main.css": "/react-dungeon-crawl/static/css/main.258e1d10.chunk.css",
+    "main.js": "/react-dungeon-crawl/static/js/main.e01c1cc2.chunk.js",
+    "main.js.map": "/react-dungeon-crawl/static/js/main.e01c1cc2.chunk.js.map",
     "runtime-main.js": "/react-dungeon-crawl/static/js/runtime-main.eb623704.js",
     "runtime-main.js.map": "/react-dungeon-crawl/static/js/runtime-main.eb623704.js.map",
     "static/js/2.8611267c.chunk.js": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js",
     "static/js/2.8611267c.chunk.js.map": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js.map",
     "index.html": "/react-dungeon-crawl/index.html",
-    "precache-manifest.e268dd13646855222aa1eaae157bf361.js": "/react-dungeon-crawl/precache-manifest.e268dd13646855222aa1eaae157bf361.js",
+    "precache-manifest.60a674f89142df8f3d2b1bcf6bdf8f27.js": "/react-dungeon-crawl/precache-manifest.60a674f89142df8f3d2b1bcf6bdf8f27.js",
     "service-worker.js": "/react-dungeon-crawl/service-worker.js",
-    "static/css/main.ba283831.chunk.css.map": "/react-dungeon-crawl/static/css/main.ba283831.chunk.css.map",
+    "static/css/main.258e1d10.chunk.css.map": "/react-dungeon-crawl/static/css/main.258e1d10.chunk.css.map",
     "static/js/2.8611267c.chunk.js.LICENSE.txt": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.eb623704.js",
     "static/js/2.8611267c.chunk.js",
-    "static/css/main.ba283831.chunk.css",
-    "static/js/main.e3ba01a1.chunk.js"
+    "static/css/main.258e1d10.chunk.css",
+    "static/js/main.e01c1cc2.chunk.js"
   ]
 }
