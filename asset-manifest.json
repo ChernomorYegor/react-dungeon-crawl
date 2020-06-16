@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-dungeon-crawl/static/css/main.1ab28e2c.chunk.css",
+    "main.css": "/react-dungeon-crawl/static/css/main.ba283831.chunk.css",
     "main.js": "/react-dungeon-crawl/static/js/main.e3ba01a1.chunk.js",
     "main.js.map": "/react-dungeon-crawl/static/js/main.e3ba01a1.chunk.js.map",
     "runtime-main.js": "/react-dungeon-crawl/static/js/runtime-main.eb623704.js",
@@ -8,15 +8,15 @@
     "static/js/2.8611267c.chunk.js": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js",
     "static/js/2.8611267c.chunk.js.map": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js.map",
     "index.html": "/react-dungeon-crawl/index.html",
-    "precache-manifest.fdd21e1119e16a2bc7eed4b799dfb110.js": "/react-dungeon-crawl/precache-manifest.fdd21e1119e16a2bc7eed4b799dfb110.js",
+    "precache-manifest.e268dd13646855222aa1eaae157bf361.js": "/react-dungeon-crawl/precache-manifest.e268dd13646855222aa1eaae157bf361.js",
     "service-worker.js": "/react-dungeon-crawl/service-worker.js",
-    "static/css/main.1ab28e2c.chunk.css.map": "/react-dungeon-crawl/static/css/main.1ab28e2c.chunk.css.map",
+    "static/css/main.ba283831.chunk.css.map": "/react-dungeon-crawl/static/css/main.ba283831.chunk.css.map",
     "static/js/2.8611267c.chunk.js.LICENSE.txt": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.eb623704.js",
     "static/js/2.8611267c.chunk.js",
-    "static/css/main.1ab28e2c.chunk.css",
+    "static/css/main.ba283831.chunk.css",
     "static/js/main.e3ba01a1.chunk.js"
   ]
 }
