@@ -171,7 +171,7 @@ function Game(
     }
 
     function addItems(mapCoordinates) {
-        if (mapCoordinates === CERTIFICATE) {
+        if (mapCoordinates.replace(/[0-9]/g, '') === CERTIFICATE) {
             if (currentCertificates === CERTIFICATES - 1) {
                 let map = gameMap.slice();
                 console.log(`map`, map);
@@ -181,7 +181,7 @@ function Game(
             }
             addCertificate(Math.round(calculatePoints(10)));
         }
-        if (mapCoordinates === SKILL) {
+        if (mapCoordinates.replace(/[0-9]/g, '') === SKILL) {
             if (currentSkills === SKILLS - 1) {
                 let map = gameMap.slice();
                 console.log(`map`, map);
@@ -242,11 +242,17 @@ function Game(
                             rowMap.map((square, squareIndex) => {
                                 return (
                                     <div
-                                        className={`square ${square}`}
+                                        className={`square ${square.replace(/[0-9]/g, '')}`}
                                         key={`${rowIndex + currentOffsetY}${squareIndex + currentOffsetX}`}
                                         style={{width: `${squareSize}px`, height: `${squareSize}px`}}
                                     >
-                                        {square === 'player' && <img src={process.env.PUBLIC_URL + '/images/player.png'} alt="player" style={{width: `${squareSize}px`, height: `${squareSize}px`}} />}
+                                        {
+                                            (square !== EMPTY) && <img
+                                                src={process.env.PUBLIC_URL + `/images/${square}.png`}
+                                                alt={square.replace(/[0-9]/g, '')}
+                                                style={{width: `${squareSize}px`, height: `${squareSize}px`}}
+                                            />
+                                        }
                                     </div>
                                 )
                             })

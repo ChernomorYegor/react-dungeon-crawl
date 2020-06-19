@@ -24,6 +24,7 @@ function App({gameOn, isSettingsShow, mapWidth, mapHeight, isTopResultsShow, get
 
     function generateItems(map, items, itemClass) {
         let itemsInterval = Math.floor(mapHeight / items);
+        let itemIncrement = 0;
         let itemVar = 0;
         let itemsBalance = 0;
         if (mapHeight % items !== 0) {
@@ -75,7 +76,9 @@ function App({gameOn, isSettingsShow, mapWidth, mapHeight, isTopResultsShow, get
                     isWall(itemY, itemX - 1) && isWall(itemY + 1, itemX) && isWall(itemY - 1, itemX)
                 )
             ) {
-                map[itemY][itemX] = itemClass;
+                map[itemY][itemX] = `${itemClass}${itemIncrement}`;
+                itemIncrement++;
+                console.log(`itemIncrement`, itemIncrement);
                 if (itemsBalance > 0) {
                     itemVar += itemsInterval + 1;
                     itemsBalance--;

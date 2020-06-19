@@ -199,27 +199,20 @@ progress[value]::-moz-progress-bar {
 }
 
 .row-map.first {
-  border-top: 6px solid #999;
+  border-top: 6px solid #666;
 }
 
 .row-map.last {
-  border-bottom: 6px solid #999;
+  border-bottom: 6px solid #666;
 }
 
 .square {
   display: block;
+  background: #111;
 }
 
 .wall {background: #666;}
-.empty {background: #111;}
-.certificate {background: #f64a45;}
-.skill {background: orange;}
-.boss-wall {background: yellow;}
-.boss {background: red;}
-.player img {background: #111;}
-/*.player {*/
-/*  background: #fff url(/images/player.png) no-repeat;*/
-/*}*/
+.boss-wall {background: #b63b31;}
 
 .game-over p {
   font-size: 38px;
@@ -304,7 +297,7 @@ progress[value]::-moz-progress-bar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  height: 80%;
 }
 
 .top-results-body table {
@@ -319,7 +312,6 @@ progress[value]::-moz-progress-bar {
 .top-results-body td {
   padding: 12px;
   text-align: center;
-  /*border: 1px solid #f64a45;*/
 }
 
 .top-results-body tbody tr:first-child td {color: gold;}
