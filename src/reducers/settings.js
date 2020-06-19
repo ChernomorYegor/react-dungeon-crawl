@@ -27,7 +27,6 @@ const settingsReducer = handleActions({
         });
     },
     [ActionsSettings['SETTINGS/GET_SETTINGS_SUCCESSFULLY']]: (state, action) => {
-        console.log(action.payload);
         if (action.payload !== null) {
             return update(state, {
                 $merge: {

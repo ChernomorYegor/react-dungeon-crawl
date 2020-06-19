@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 function TopResults({topResults, getResults, backToStartMenu}) {
 
     useEffect(() => {
-        console.log(getResults());
         getResults();
     }, []);
 
@@ -21,7 +20,6 @@ function TopResults({topResults, getResults, backToStartMenu}) {
                 <tbody>
                     {
                         topResults.map((result, index) => {
-                            console.log(result.name);
                             return (
                                 <tr key={result.id}>
                                     <td className="position">{index + 1}.</td>

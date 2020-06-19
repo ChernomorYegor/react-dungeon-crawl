@@ -77,7 +77,6 @@ function Game(
             function handleWindowKeyDown(e) {
                 switch (e.key) {
                     case ARROW_LEFT:
-                        console.log(ARROW_LEFT);
                         if (playerX === 0 && gameMap[playerY][mapWidth - 1] !== WALL && gameMap[playerY][mapWidth - 1] !== BOSS_WALL) {
                             changeOffsetX((mapWidth - 1) - (viewportWidth - 1) );
                             addItems(gameMap[playerY][mapWidth - 1]);
@@ -94,7 +93,6 @@ function Game(
                         }
                         break;
                     case ARROW_UP:
-                        console.log(ARROW_UP);
                         if (playerY === 0) {
                             break;
                         }
@@ -108,7 +106,6 @@ function Game(
                         }
                         break;
                     case ARROW_RIGHT:
-                        console.log(ARROW_RIGHT);
                         if (playerX === mapWidth - 1 && gameMap[playerY][0] !== WALL && gameMap[playerY][0] !== BOSS_WALL) {
                             changeOffsetX(0);
                             addItems(gameMap[playerY][0]);
@@ -125,7 +122,6 @@ function Game(
                         }
                         break;
                     case ARROW_DOWN:
-                        console.log(ARROW_DOWN);
                         if (playerY === gameMap.length - 1) {
                             break;
                         }
@@ -139,7 +135,6 @@ function Game(
                         }
                         break;
                     case ESCAPE:
-                        console.log('Quit Game');
                         _quitGame()
                         break;
                     default: break;
@@ -174,9 +169,7 @@ function Game(
         if (mapCoordinates.replace(/[0-9]/g, '') === CERTIFICATE) {
             if (currentCertificates === CERTIFICATES - 1) {
                 let map = gameMap.slice();
-                console.log(`map`, map);
                 generateItems(map, SKILLS, SKILL);
-                console.log(`map`, map);
                 startLevel2({map});
             }
             addCertificate(Math.round(calculatePoints(10)));
@@ -184,14 +177,11 @@ function Game(
         if (mapCoordinates.replace(/[0-9]/g, '') === SKILL) {
             if (currentSkills === SKILLS - 1) {
                 let map = gameMap.slice();
-                console.log(`map`, map);
                 map.forEach((rowMap, rowIndex) => rowMap.forEach((square, squareIndex) => {
                     if (square === BOSS_WALL) {
-                        console.log(`square-change`, square);
                         map[rowIndex][squareIndex] = EMPTY;
                     }
                 }));
-                console.log(`map`, map);
                 removeBossWalls({map});
             }
             addSkill(Math.round(calculatePoints(100)));
@@ -224,13 +214,11 @@ function Game(
 
     function renderMap() {
         let visibleMap = [];
+
         for (let y = currentOffsetY; y < currentOffsetY + viewportHeight; y++) {
             let visibleRowsMap = gameMap[y].slice(currentOffsetX, currentOffsetX + viewportWidth);
             visibleMap.push(visibleRowsMap);
         }
-        console.log('visibleMap', visibleMap);
-        console.log('currentOffsetY', currentOffsetY);
-        console.log('currentOffsetX', currentOffsetX);
 
         return (
             visibleMap.map((rowMap, rowIndex) => {

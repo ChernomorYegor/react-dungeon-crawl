@@ -24,19 +24,19 @@ function StartMenu(
     const EMPTY = 'empty';
     const BOSS_WALL = 'boss-wall';
     const BOSS = 'boss';
+    const BOSS_SIZE = 4;
     const CERTIFICATE = 'certificate';
 
     function _startGame() {
         let playerX = getRandomNumber(0, viewportWidth - 1);
         let map = generateMap(playerX);
-        console.log(map, playerX);
         startGame({map, playerX});
     }
 
     function generateMap(playerX) {
         let generatedMap = [];
         let numberOfWalls = Math.ceil(mapWidth * difficulty / 100);
-        console.log(numberOfWalls);
+
         for (let i = 0; i < mapHeight; i++) {
             let generatedRowMap = [];
 
@@ -71,11 +71,11 @@ function StartMenu(
     function generateBosses(map, bosses) {
         let bossesInterval = Math.floor(mapHeight / bosses);
         let bossVar = 0;
-        console.log(bossesInterval);
+
         while (bossVar < mapHeight - 1) {
-            let bossY = getRandomNumber(bossVar + 1, bossVar + bossesInterval - 5);
-            let bossX = getRandomNumber(0, mapWidth - 5);
-            console.log(bossVar);
+            let bossY = getRandomNumber(bossVar + 1, bossVar + (bossesInterval - 1) - BOSS_SIZE);
+            let bossX = getRandomNumber(0, (mapWidth - 1) - BOSS_SIZE);
+
             for (let bw = 1; bw < 4; bw++) {
                 map[bossY][bossX] = BOSS_WALL;
                 map[bossY + bw][bossX] = BOSS_WALL;

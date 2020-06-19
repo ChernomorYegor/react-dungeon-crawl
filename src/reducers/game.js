@@ -18,7 +18,6 @@ const initialState = {
 
 const gameReducer = handleActions({
     [ActionsGame['GAME/START_GAME']]: (state, action) => {
-        console.log(action.payload);
         return update(state, {
             $merge: {
                 gameOn: true,

@@ -44,7 +44,6 @@ function Settings(
 
     function _saveSettings(e) {
         e.preventDefault();
-        console.log({difficultyLocal, mapWidthLocal, mapHeightLocal, viewportWidthLocal, viewportHeightLocal});
         saveSettings({
             difficultyLocal,
             mapWidthLocal,

@@ -34,7 +34,6 @@ class topResultsService {
                 topResults.pop();
             }
         }
-        console.log(topResults);
         window.localStorage.setItem(DUNGEON_CRAWL_TOP_RESULTS_KEY, JSON.stringify(topResults));
 
         return topResults;

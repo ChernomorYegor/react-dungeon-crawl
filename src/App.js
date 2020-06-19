@@ -27,16 +27,15 @@ function App({gameOn, isSettingsShow, mapWidth, mapHeight, isTopResultsShow, get
         let itemIncrement = 0;
         let itemVar = 0;
         let itemsBalance = 0;
+
         if (mapHeight % items !== 0) {
             itemVar = 1;
             itemsBalance = Math.ceil((mapHeight % items)) - 1;
         }
-        console.log(`itemBalance`, itemsBalance);
-        console.log(`itemsInterval`, itemsInterval);
+
         while (itemVar < mapHeight) {
             let itemY = getRandomNumber(itemVar, itemVar + itemsInterval - 1);
             let itemX = getRandomNumber(0, mapWidth - 1);
-            console.log(`itemVar`, itemVar);
 
             if ( (map[itemY][itemX] === EMPTY) &&
                 !(
@@ -78,7 +77,7 @@ function App({gameOn, isSettingsShow, mapWidth, mapHeight, isTopResultsShow, get
             ) {
                 map[itemY][itemX] = `${itemClass}${itemIncrement}`;
                 itemIncrement++;
-                console.log(`itemIncrement`, itemIncrement);
+
                 if (itemsBalance > 0) {
                     itemVar += itemsInterval + 1;
                     itemsBalance--;

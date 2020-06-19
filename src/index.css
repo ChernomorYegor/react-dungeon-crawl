@@ -148,13 +148,13 @@ progress[value]::-moz-progress-bar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 18%;
+  height: 20%;
   margin: 2% 50px;
 }
 
 .bottom-bar {
   justify-content: space-around;
-  height: 16%;
+  height: 14%;
   margin: 2% 50px;
 }
 
@@ -178,6 +178,7 @@ progress[value]::-moz-progress-bar {
 }
 
 .messages p:first-child {
+  height: 30px;
   margin-bottom: 1%;
 }
 
