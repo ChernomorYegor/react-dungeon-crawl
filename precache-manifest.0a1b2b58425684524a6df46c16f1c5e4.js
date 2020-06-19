@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b55254ba0b625dc2085f75538cc033a9",
+    "revision": "0b2338f34975ccf9f9f63abfb710da99",
     "url": "/react-dungeon-crawl/index.html"
   },
   {
-    "revision": "a9bd6c8df3e6f9c1b83f",
-    "url": "/react-dungeon-crawl/static/css/main.811c6426.chunk.css"
+    "revision": "12e2561865744105eb1a",
+    "url": "/react-dungeon-crawl/static/css/main.1cbeabfc.chunk.css"
   },
   {
     "revision": "aa3c8b57da355d5fd55d",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-dungeon-crawl/static/js/2.8611267c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a9bd6c8df3e6f9c1b83f",
-    "url": "/react-dungeon-crawl/static/js/main.88c713fd.chunk.js"
+    "revision": "12e2561865744105eb1a",
+    "url": "/react-dungeon-crawl/static/js/main.9f619012.chunk.js"
   },
   {
     "revision": "d33d43ed28b31483bb64",
