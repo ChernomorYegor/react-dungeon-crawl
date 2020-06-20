@@ -238,7 +238,6 @@ function Game(
                                             (square !== EMPTY) && <img
                                                 src={process.env.PUBLIC_URL + `/images/${square}.png`}
                                                 alt={square.replace(/[0-9]/g, '')}
-                                                style={{width: `${squareSize}px`, height: `${squareSize}px`}}
                                             />
                                         }
                                     </div>
